@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "dataset": "hotpot_mini.json",
+    "mode": "openai",
+    "num_records": 6,
+    "agents": [
+      "react",
+      "reflexion"
+    ]
+  },
+  "summary": {
+    "react": {
+      "count": 3,
+      "em": 0.6667,
+      "avg_attempts": 1,
+      "avg_token_estimate": 361,
+      "avg_latency_ms": 2682.33
+    },
+    "reflexion": {
+      "count": 3,
+      "em": 0.6667,
+      "avg_attempts": 1.6667,
+      "avg_token_estimate": 802.67,
+      "avg_latency_ms": 5430.33
+    },
+    "delta_reflexion_minus_react": {
+      "em_abs": 0.0,
+      "attempts_abs": 0.6667,
+      "tokens_abs": 441.67,
+      "latency_abs": 2748.0
+    }
+  },
+  "failure_modes": {
+    "react": {
+      "none": 2,
+      "wrong_final_answer": 1
+    },
+    "reflexion": {
+      "none": 2,
+      "wrong_final_answer": 1
+    }
+  },
+  "examples": [
+    {
+      "qid": "hp001",
+      "agent_type": "react",
+      "gold_answer": "none",
+      "predicted_answer": "none",
+      "is_correct": true,
+      "attempts": 1,
+      "failure_mode": "none",
+      "reflection_count": 0
+    },
+    {
+      "qid": "hp002",
+      "agent_type": "react",
+      "gold_answer": "piano",
+      "predicted_answer": "Piano",
+      "is_correct": true,
+      "attempts": 1,
+      "failure_mode": "none",
+      "reflection_count": 0
+    },
+    {
+      "qid": "hp003",
+      "agent_type": "react",
+      "gold_answer": "Nile",
+      "predicted_answer": "Nile River",
+      "is_correct": false,
+      "attempts": 1,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 0
+    },
+    {
+      "qid": "hp001",
+      "agent_type": "reflexion",
+      "gold_answer": "none",
+      "predicted_answer": "none",
+      "is_correct": true,
+      "attempts": 1,
+      "failure_mode": "none",
+      "reflection_count": 0
+    },
+    {
+      "qid": "hp002",
+      "agent_type": "reflexion",
+      "gold_answer": "piano",
+      "predicted_answer": "Piano",
+      "is_correct": true,
+      "attempts": 1,
+      "failure_mode": "none",
+      "reflection_count": 0
+    },
+    {
+      "qid": "hp003",
+      "agent_type": "reflexion",
+      "gold_answer": "Nile",
+      "predicted_answer": "Nile River",
+      "is_correct": false,
+      "attempts": 3,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 2
+    }
+  ],
+  "extensions": [
+    "structured_evaluator",
+    "reflection_memory",
+    "benchmark_report_json",
+    "mock_mode_for_autograding"
+  ],
+  "discussion": "Reflexion helps when the first attempt stops after the first hop or drifts to a wrong second-hop entity. The tradeoff is higher attempts, token cost, and latency. In a real report, students should explain when the reflection memory was useful, which failure modes remained, and whether evaluator quality limited gains."
+}
